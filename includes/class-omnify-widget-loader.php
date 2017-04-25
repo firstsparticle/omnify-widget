@@ -57,11 +57,11 @@ class Omnify_Widget_Loader {
 	 * Add a new action to the collection to be registered with WordPress.
 	 *
 	 * @since    1.0.0
-	 * @param    string $hook       The name of the WordPress action that is being registered.
-	 * @param    object $component  A reference to the instance of the object on which the action is defined.
-	 * @param    string $callback   The name of the function definition on the $component.
-	 * @param    int    $priority   Optional. The priority of the function. Default is 10.
-	 * @param    int    $accepted_args    Optional. Number of arguments to be passed to the $callback. Default is 1.
+	 * @param    string $hook           The name of the WordPress action that is being registered.
+	 * @param    object $component      A reference to the instance of the object on which the action is defined.
+	 * @param    string $callback       The name of the function definition on the $component.
+	 * @param    int    $priority       Optional. The priority of the function. Default is 10.
+	 * @param    int    $accepted_args  Optional. Number of arguments to be passed to the $callback. Default is 1.
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );

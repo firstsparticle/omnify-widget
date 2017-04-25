@@ -2,3 +2,26 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.textbox-token {
+    font-size : 24pt;
+    width : 60%;
+    height : 50px;
+    margin: auto;
+}
+
+.form-center-top {
+    text-align : center;
+    margin-top : 15%;
+}
+
+.details-center-top {
+    margin-left : 15%;
+    margin-top : 5%;
+}
+
+.image-padding {
+    width: 725px;
+    padding-top : 15px;
+    padding-bottom : 15px
+}

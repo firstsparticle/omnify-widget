@@ -62,8 +62,6 @@ class Omnify_Widget_Admin {
 	public function enqueue_styles() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Omnify_Widget_Loader as all of the hooks are defined
 		 * in that particular class.
@@ -73,7 +71,9 @@ class Omnify_Widget_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/omnify-widget-admin.css', array(), $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name . 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-bootstrap.css', array(), $this->version, 'all' );
+        
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/omnify-widget-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -85,8 +85,6 @@ class Omnify_Widget_Admin {
 	public function enqueue_scripts() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Omnify_Widget_Loader as all of the hooks are defined
 		 * in that particular class.
@@ -97,6 +95,8 @@ class Omnify_Widget_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/omnify-widget-admin.js', array( 'jquery' ), $this->version, false );
+        
+        wp_enqueue_script( $this->plugin_name . 'bootstrap', plugin_dir_url( __FILE__ ) . 'js/omnify-widget-bootstrap.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -140,4 +140,29 @@ class Omnify_Widget_Admin {
 	public function display_plugin_setup_page() {
 		include_once( 'partials/omnify-widget-admin-display.php' );
 	}
+
+	/**
+	 * Validate the token received as input
+	 *
+	 * @since    1.0.0
+	 */
+    public function validate_token($token) {
+        if(isset($token) && !empty($token) && strlen($token) == 20) {
+            return $token;
+        } else {
+            die("<h2>Invalid Token!</h2>");
+        }
+    }
+
+
+    /**
+     *
+     * Update the token option
+     *
+	 * @since    1.0.0
+     **/
+     public function options_update() {
+         register_setting($this->plugin_name, "token" , array($this, 'validate_token'));
+     }
+
 }

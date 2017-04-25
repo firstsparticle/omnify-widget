@@ -13,5 +13,14 @@
  */
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1>Hello World!</h1>
+<?php 
+
+// include only if the setup is not complete
+$token = get_option('token');
+if(!$token) {
+    include_once( 'omnify-widget-setup-token.php' );
+} else {
+    echo "<h1>Your token is <code>" . $token . "</code>!</h1>";
+}
+
+?>
