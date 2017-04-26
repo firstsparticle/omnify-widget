@@ -20,7 +20,7 @@ $token = get_option('token');
 if(!$token) {
     include_once( 'omnify-widget-setup-token.php' );
 } else {
-    echo "<h1>Your token is <code>" . $token . "</code>!</h1>";
+    include_once( 'omnify-widget-home.php' );
 }
 
 ?>

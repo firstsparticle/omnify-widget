@@ -8,20 +8,11 @@
 	 * Note: It has been assumed you will write jQuery code here, so the
 	 * $ function reference has been prepared for usage within the scope
 	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
 	 */
+
+    // add color picker to all color type inputs
+    $(function() {
+        $('.color-picker').wpColorPicker();
+    });
 
 })( jQuery );

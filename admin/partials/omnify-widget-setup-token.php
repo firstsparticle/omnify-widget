@@ -42,10 +42,10 @@
     <li>
       In the Omnify Dashboard, go to <b>Website</b> &gt; <b>Widgets</b> and click on <b>'Get Access Token'</b> button.
     </li>
-    <img src="<?php echo plugin_dir_url() . $this->plugin_name . '/admin/images/generate-token.png'; ?>" class="image-padding" alt="Step 1"><br>
+    <img src="<?php echo plugin_dir_url() . $this->plugin_name; ?>/admin/images/generate-token.png" class="image-padding" alt="Step 1"><br>
     <li>
       Press 'Copy To Clipboard' in the resulting pop-up.
     </li>
-    <img src="<?php echo plugin_dir_url() . $this->plugin_name . '/admin/images/copy-token.png'; ?>" class="image-padding" alt="Step 2"><br>
+    <img src="<?php echo plugin_dir_url() . $this->plugin_name; ?>/admin/images/copy-token.png" class="image-padding" alt="Step 2"><br>
   </ol>
 </div>

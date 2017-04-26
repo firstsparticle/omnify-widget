@@ -71,7 +71,9 @@ class Omnify_Widget_Admin {
 		 * class.
 		 */
 
-        wp_enqueue_style( $this->plugin_name . 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-bootstrap.css', array(), $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name . '-bootstrap', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-bootstrap.css', array(), $this->version, 'all' );
+        
+        wp_enqueue_style( $this->plugin_name . '-bootstrap-select', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-bootstrap-select.css', array(), $this->version, 'all' );
         
         wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/omnify-widget-admin.css', array(), $this->version, 'all' );
 
@@ -92,11 +94,15 @@ class Omnify_Widget_Admin {
 		 * The Omnify_Widget_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
-		 */
+         */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/omnify-widget-admin.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_style( 'wp-color-picker' );
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/omnify-widget-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
         
-        wp_enqueue_script( $this->plugin_name . 'bootstrap', plugin_dir_url( __FILE__ ) . 'js/omnify-widget-bootstrap.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( $this->plugin_name . '-bootstrap', plugin_dir_url( __FILE__ ) . 'js/omnify-widget-bootstrap.js', array( 'jquery' ), $this->version, false );
+        
+        wp_enqueue_script( $this->plugin_name . '-bootstrap-select', plugin_dir_url( __FILE__ ) . 'js/omnify-widget-bootstrap-select.js', array( $this->plugin_name . '-bootstrap' ), $this->version, false );
 
 	}
 
