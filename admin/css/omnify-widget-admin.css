@@ -31,7 +31,7 @@
 	margin-left: 13%;
 }
 
-.iframe {
+.iframe-view {
 	width: 560px;
 	background-color: #cccccc;
 	height: 420px;
@@ -63,6 +63,12 @@
 .input-color {
     border-radius: 3px;
 }
+
+.button-widget-labels {
+    padding-top: 9px;
+    font-weight: bold;
+}
+
 
 /* --- Material Switch --- */
 .material-switch > input[type="checkbox"] {

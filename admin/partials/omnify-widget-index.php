@@ -21,6 +21,7 @@ if(!$token) {
     include_once( 'omnify-widget-setup-token.php' );
 } else {
     include_once( 'omnify-widget-home.php' );
+    include_once( 'omnify-widget-shortcodes-data.php' );
 }
 
 ?>

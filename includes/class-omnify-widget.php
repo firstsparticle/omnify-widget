@@ -142,8 +142,10 @@ class Omnify_Widget {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		// Add menu item
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+        $this->loader->add_action( 'init', $plugin_admin, 'omnify_widget_custom_post_type' );
+
+        $this->loader->add_action( 'wp_ajax_gen_iframe', $plugin_admin, 'omnify_widget_ah_gen_iframe' );
 
 		// Add Settings link to the plugin
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
