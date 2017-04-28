@@ -228,6 +228,29 @@ class Omnify_Widget_Admin {
 
     /**
      *
+     * Register shortcodes for all the widgets
+     *
+     * @since   1.0.0
+     **/
+    public function omnify_widget_register_shortcodes() {
+        
+        /**
+         *
+         * Register shortcodes for all the widgets
+         *
+         * @since   1.0.0
+         **/
+
+        function omnify_widget_handle_shortcodes($atts) {
+            $post_id = $atts['id'];
+            return get_post_field( 'post_content', $post_id );
+        }
+
+        add_shortcode( 'omnify_widget', 'omnify_widget_handle_shortcodes' );
+    }
+
+    /**
+     *
      * Create and populate widget to database
      *
      * @since   1.0.0
@@ -246,7 +269,7 @@ class Omnify_Widget_Admin {
         $post_id = wp_insert_post( $post, true);
 
         $key = "shortcode";
-        $value = "[widget_type_" . $post_id . "]";
+        $value = '[omnify_widget id="' . $post_id . '"]';
 
         add_post_meta($post_id, $key, $value, true);
 

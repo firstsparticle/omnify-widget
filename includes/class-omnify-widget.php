@@ -148,6 +148,9 @@ class Omnify_Widget {
         $this->loader->add_action( 'wp_ajax_gen_iframe', $plugin_admin, 'omnify_widget_ah_gen_iframe' );
         $this->loader->add_action( 'wp_ajax_gen_button', $plugin_admin, 'omnify_widget_ah_gen_button' );
 
+        // Add shortcodes
+        $this->loader->add_action( 'init', $plugin_admin, 'omnify_widget_register_shortcodes' );
+
 		// Add Settings link to the plugin
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
         $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );

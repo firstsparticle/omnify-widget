@@ -40,7 +40,7 @@ while($loop->have_posts()) {
               <div class="row">
                 <div class="col-lg-12">
                   <div class="input-group">
-                    <input type="text" class="form-control shortcode" value="<?php echo get_post_meta($post->ID, 'shortcode', true); ?>" disabled />
+                    <input type="text" class="form-control shortcode" value="<?php echo htmlentities(get_post_meta($post->ID, 'shortcode', true)); ?>" disabled />
                     <div class="input-group-btn copy-shortcode">
                       <button type="button" class="btn btn-primary">
                         Copy
