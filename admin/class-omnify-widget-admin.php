@@ -219,8 +219,10 @@ class Omnify_Widget_Admin {
      **/
     public function omnify_widget_ah_gen_button() {
         ob_clean();
-        $code = $_POST['button-data'];
-        omnify_widget_create_widget( 'BUTTON', $code, $action );
+        $data = $_POST['button'];
+        $code = $data['code'];
+        $action = $data['action'];
+        $this->omnify_widget_create_widget( 'BUTTON', $code, $action );
         wp_die();
     }
 

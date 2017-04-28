@@ -40,29 +40,26 @@
             <p>Select Category</p>
           </div>
           <div class="col-sm-8">
-            <select class="selectpicker" title="Select Category" data-width="100%">
-              <option>Omnify Website</option>
-              <option>Sign In</option>
-              <option>Sign Up</option>
-              <option>Events</option>
-              <option>Facilities</option>
-              <option>Memberships</option>
-              <option>Classpacks</option>
-              <option>Classes</option>
-              <option>Appointments</option>
+            <select class="selectpicker" name="category" title="Select Category" data-width="100%">
+              <option value="website">Omnify Website</option>
+              <option value="login">Sign In</option>
+              <option value="signup">Sign Up</option>
+              <option value="events">Events</option>
+              <option value="facilities">Facilities</option>
+              <option value="memberships">Memberships</option>
+              <option value="classpacks">Classpacks</option>
+              <option value="classes">Classes</option>
+              <option value="appointments">Appointments</option>
             </select>
           </div>
         </div>
         </br>
         <div class="row selectnamerow">
           <div class="col-sm-4 button-widget-labels">
-            <p>Select Name</p>
+            <p>Select Service</p>
           </div>
           <div class="col-sm-8">
-            <select class="selectpicker" title="Select Category" data-width="100%">
-              <option>Class One</option>
-              <option>Classpack Two</option>
-              <option>Board Game</option>
+            <select title="Select Category" name="select-service" data-width="100%">
             </select>
           </div>
         </div>
@@ -95,7 +92,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Generate Shortcode</button>
+        <button type="button" class="btn btn-primary" id="generate-button-btn">Generate Shortcode</button>
       </div>
     </div>
   </div>
@@ -213,3 +210,8 @@
     </div>
   </div>
 </div>
+
+<?php
+// set variables
+echo "<script> var token = '$token'; </script>";
+?>

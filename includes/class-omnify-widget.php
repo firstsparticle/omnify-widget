@@ -146,6 +146,7 @@ class Omnify_Widget {
         $this->loader->add_action( 'init', $plugin_admin, 'omnify_widget_custom_post_type' );
 
         $this->loader->add_action( 'wp_ajax_gen_iframe', $plugin_admin, 'omnify_widget_ah_gen_iframe' );
+        $this->loader->add_action( 'wp_ajax_gen_button', $plugin_admin, 'omnify_widget_ah_gen_button' );
 
 		// Add Settings link to the plugin
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );

@@ -10,7 +10,15 @@
 	 * of this function.
 	 */
 
-    // add color picker to all color type inputs
+    /**
+     * Global variables
+     */
+    var appURL = "http://business.linkmysport.in";
+    var websiteURL;
+    var nonsessionMethod = "getOmnifyWidgetData";
+    var finalURL;
+    var widgetData;
+
     $(function() {
 
         /**
@@ -37,10 +45,57 @@
         });
 
         /**
-         * iFrame fetch source
+         * Fetching business data
          */
-        var baseURL = 'http://livetest1.linkmysport.in/';
-        var finalURL;
+        var apiEndPoint = appURL + "/v2/Apiv2/Nonsession.json?method=" +
+                            nonsessionMethod + "&auth_code=" + token;
+
+        /**
+         * AJAX call to fetch the business info
+         */
+        $.ajax({
+            url: apiEndPoint,
+            type: 'GET',
+            success: function(response) {
+                widgetData = response;
+                websiteURL = response.base_protocol + "://" + response.subdomain + '.' + response.domain;
+                console.log(JSON.stringify(response));
+                setPreviewInModal();
+            }
+        });
+
+        /**
+         * Category changing reflects button name
+         */
+        $("select[name='category']").on('change', function() {
+            var category = $(this).val();
+            $("select[name='select-service']").html("");
+
+            if(widgetData && category != 'website' && category != 'signup' && category != 'login') {
+
+                for(var i = 0; i < widgetData[category].length; i++) {
+                    var name = widgetData[category][i].name;
+                    var id = widgetData[category][i].id;
+                    
+                    $("select[name='select-service']").append(
+                            "<option value='" + id + "'>" + name + "</option>"
+                            );
+                }
+
+            }
+        });
+
+        function getLinkForCategory(id, widgetData, category) {
+
+            appURL = "http://business.linkmysport.in";
+            if(category != 'website' && category != 'signup' && category != 'login') {
+                var link = widgetData['links'][category] + "/" + id ;
+            } else {
+                var link = category;
+            }
+
+            return  websiteURL + '/Welcome/' + link;
+        }
 
         function setPreviewInModal() {
             var showFooter = 1;
@@ -66,33 +121,79 @@
 
             var finalInteger = parseInt( finalBinaryCode , 2);
 
-            finalURL = baseURL + '/?contentfilter=' + finalInteger;
+            finalURL = websiteURL + '/?contentfilter=' + finalInteger;
 
             $(".iframe-view").attr('src', finalURL);
         }
 
-        setPreviewInModal();
-        $(".iframe-check").on('change', setPreviewInModal);;
+        $(".iframe-check").on('change', setPreviewInModal);
 
-        function generateButtonWidget() {
-                
-            var buttonColors = "background-color: " + $("#button_color").val() +
-                               "; color: " + $("#text_color").val() + ";";
+        function generateButtonWidget(backColor, textColor, buttonText, CTA_URL ) {
 
-            var finalString = "<style>#omnify-booking-widget{ " + buttonColors + "width : auto; height : auto ;border-radius : 25px; border: 1px solid #ddd; padding: 12px 25px 12px 25px; font-family : sans-serif ; font-weight: normal;font-size: 100%; }</style><script type='text/javascript'>function newPopup(url){popupWindow=window.open(url,'','left=10,top=100,resizable=yes,scrollbars=yes,menubar=no,location=no,,toolbar=no,directories=no,status=yes')}</script><h4><button id='omnify-booking-widget' onclick=\"JavaScript:newPopup(\'" + finalURL  + " \');\"" + "> " + buttonText + "</button></h4>";
+            var buttonColors = "background-color: " + backColor +
+                               "; color: " + textColor + ";";
+
+            return "<style>#omnify-booking-widget{ " + buttonColors + "width : auto; height : auto ;border-radius : 25px; border: 1px solid #ddd; padding: 12px 25px 12px 25px; font-family : sans-serif ; font-weight: normal;font-size: 100%; }</style><script type='text/javascript'>function newPopup(url){popupWindow=window.open(url,'','left=10,top=100,resizable=yes,scrollbars=yes,menubar=no,location=no,,toolbar=no,directories=no,status=yes')}</script><h4><button id='omnify-booking-widget' onclick=\"JavaScript:newPopup(\'" + CTA_URL  + " \');\"" + "> " + buttonText + "</button></h4>";
 
         }
 
-        function generateIframeWidget() {
+        function generateIframeWidget(height, width, url) {
+            return '<iframe src=\"' + url + '\" style=\"height:' +
+                    height + 'px; width:' + width + 'px;\"></iframe>';
+        }
+
+        /**
+         * Generate iframe code button
+         */
+        $("#generate-iframe-btn").on('click', function() {
             var height = $("#iframe-height").val();
             var width = $("#iframe-width").val();
-            return '<iframe src=\"' + finalURL + '\" style=\"height:' + height + 'px; width:' + width + 'px;\"></iframe>';
-        }
-
-        $("#generate-iframe-btn").on('click', function() {
+            var iframe_data = generateIframeWidget(height, width, finalURL);
             var data = {
-                action : 'gen_iframe',
-                'iframe-data': generateIframeWidget(),
+                'action' : 'gen_iframe',
+                'iframe-data': iframe_data
+            };
+
+            if(!iframe_data) {
+                alert("Something went wrong! Please provide all the details properly.");
+            }
+
+            console.log(data);
+
+            $.ajax({
+                url: ajax_object.ajax_url,
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    alert(response);
+                    location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+                    
+        });
+
+        $("#generate-button-btn").on('click', function() {
+            var buttonColor = $("input[name='button_color']").val();
+            var textColor = $("input[name='text_color']").val();
+            var serviceId = $("select[name='select-service']").val();
+            var buttonText = $("#button_name").val();
+            var category = $("select[name='category']").val()
+            var cta_url = getLinkForCategory(serviceId, widgetData, category);
+            var action = category;
+
+            if(!buttonColor && !buttonText && !category && !serviceId && !cta_url) {
+                alert("Something went wrong! Please provide all the details properly.");
+            }
+
+            var data = {
+                'action' : 'gen_button',
+                'button': {
+                    'code' : generateButtonWidget( buttonColor, textColor, buttonText, cta_url ),
+                    'action' : action,
+                }
             };
 
             console.log(data);
@@ -103,12 +204,12 @@
                 data: data,
                 success: function(response) {
                     alert(response);
+                    location.reload();
                 },
                 error: function(error) {
                     console.log(error);
                 }
             });
-                    
         });
 
     });
