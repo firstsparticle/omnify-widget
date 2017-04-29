@@ -16,8 +16,10 @@
     var appURL = "http://business.linkmysport.in";
     var websiteURL;
     var nonsessionMethod = "getOmnifyWidgetData";
-    var finalURL;
+    var iframeURL;
     var widgetData;
+    var business_id;
+    var customerURL = "https://customer.getomnify.com";
 
     $(function() {
 
@@ -47,22 +49,25 @@
         /**
          * Fetching business data
          */
-        var apiEndPoint = appURL + "/v2/Apiv2/Nonsession.json?method=" +
-                            nonsessionMethod + "&auth_code=" + token;
+        if(typeof(token) !== 'undefined') {
+            var apiEndPoint = appURL + "/v2/Apiv2/Nonsession.json?method=" +
+                                nonsessionMethod + "&auth_code=" + token;
 
-        /**
-         * AJAX call to fetch the business info
-         */
-        $.ajax({
-            url: apiEndPoint,
-            type: 'GET',
-            success: function(response) {
-                widgetData = response;
-                websiteURL = response.base_protocol + "://" + response.subdomain + '.' + response.domain;
-                console.log(JSON.stringify(response));
-                setPreviewInModal();
-            }
-        });
+            /**
+             * AJAX call to fetch the business info
+             */
+            $.ajax({
+                url: apiEndPoint,
+                type: 'GET',
+                success: function(resp) {
+                    widgetData = resp;
+                    websiteURL = resp.base_protocol + "://" + resp.subdomain + '.' + resp.domain;
+                    console.log(JSON.stringify(resp));
+                    business_id = widgetData.business_id[0].business_id;
+                    setPreviewInModal();
+                }
+            });
+        }
 
         /**
          * Category changing reflects button name
@@ -81,8 +86,7 @@
                             "<option value='" + id + "'>" + name + "</option>"
                             );
                 }
-
-            }
+            } 
         });
 
         /*
@@ -96,14 +100,28 @@
 
         function getLinkForCategory(id, widgetData, category) {
 
-            appURL = "http://business.linkmysport.in";
             if(category != 'website' && category != 'signup' && category != 'login') {
+
                 var link = widgetData['links'][category] + "/" + id ;
+                return  websiteURL + '/Welcome/' + link;
+
             } else {
-                var link = category;
+
+                switch (category) {
+
+                    case 'website':
+                        return websiteURL;
+
+                    case 'signup':
+                        return customerURL + '/Welcome/' + category + '/' + business_id +
+                            '?redirectback=' + websiteURL;
+
+                    case 'login':
+                        return customerURL + '/Welcome/' + category + '/' + business_id +
+                            '?redirectback=' + websiteURL;
+                }
             }
 
-            return  websiteURL + '/Welcome/' + link;
         }
 
         function setPreviewInModal() {
@@ -130,9 +148,9 @@
 
             var finalInteger = parseInt( finalBinaryCode , 2);
 
-            finalURL = websiteURL + '/?contentfilter=' + finalInteger;
+            iframeURL = websiteURL + '/?contentfilter=' + finalInteger;
 
-            $(".iframe-view").attr('src', finalURL);
+            $(".iframe-view").attr('src', iframeURL);
         }
 
         $(".iframe-check").on('change', setPreviewInModal);
@@ -157,7 +175,7 @@
         $("#generate-iframe-btn").on('click', function() {
             var height = $("#iframe-height").val();
             var width = $("#iframe-width").val();
-            var iframe_data = generateIframeWidget(height, width, finalURL);
+            var iframe_data = generateIframeWidget(height, width, iframeURL);
             var data = {
                 'action' : 'gen_iframe',
                 'iframe-data': iframe_data
@@ -174,7 +192,7 @@
                 type: 'POST',
                 data: data,
                 success: function(response) {
-                    alert(response);
+                    console.log( "Widget id: " + response);
                     location.reload();
                 },
                 error: function(error) {
@@ -215,7 +233,12 @@
                 type: 'POST',
                 data: data,
                 success: function(response) {
-                    alert(response);
+                    console.log("Widget id: " + response);
+                    $(':input')
+                        .not(':button, :submit, :reset, :hidden, .shortcode')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
                     location.reload();
                 },
                 error: function(error) {

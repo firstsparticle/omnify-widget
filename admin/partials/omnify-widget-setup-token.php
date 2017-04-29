@@ -11,13 +11,12 @@
  */
 ?>
 
-<div class="container">
-  <div class="form-group form-center-top">
-    <h1>Omnify Widget</h1>
-    <br/>
-    <h3>Paste your Token in the input field below</h3>
+<div class="form-group form-center-top">
+  <h1>Omnify Widget</h1>
+  <br/>
+  <h3>Paste your Token in the input field below</h3>
     
-    <form action="options.php" method="post" name="set_token">
+  <form action="options.php" method="post" name="set_token">
 
     <?php
 
@@ -25,12 +24,12 @@
 
     ?>
 
-    <input type="text" class="form-control textbox-token" name="token" placeholder="Your token here..." />
-    <br/>
-    <input type="submit" data-loading="Submitting..." class="btn btn-primary btn-lg" value="Submit Access Token">
-	</form>
-  </div>
+  <input type="text" class="form-control textbox-token" name="token" placeholder="Your token here..." />
+  <br/>
+  <input type="submit" data-loading="Submitting..." class="btn btn-primary btn-lg" value="Submit Access Token">
+  </form>
 </div>
+
 <div class="details-center-top">
   <div>
     <h4>How to get the Access Token?</h4>

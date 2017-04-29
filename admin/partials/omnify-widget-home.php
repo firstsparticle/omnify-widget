@@ -215,6 +215,10 @@
 </div>
 
 <?php
-// set variables
-echo "<script> var token = '$token'; </script>";
+
+if($token) {
+    // set variables
+    echo "<script> var token = '$token'; </script>";
+}
+
 ?>
