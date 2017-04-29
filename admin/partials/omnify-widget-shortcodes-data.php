@@ -27,13 +27,14 @@ $args = array(
 );
 
 $loop = new WP_Query($args);
-
+$count = 0;
 while($loop->have_posts()) {
     global $post;
+    $count++;
     $loop->the_post();
 ?>
           <tr>
-            <td><b>1</b></td>
+            <td><b><?php echo $count; ?></b></td>
             <td><?php echo ucfirst($post->post_excerpt); ?></td>
             <td><?php echo $post->post_title; ?></td>
             <td>
