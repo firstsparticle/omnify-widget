@@ -85,6 +85,15 @@
             }
         });
 
+        /*
+         * View Widget Source
+         */
+        $(".view-code-btn").on('click', function() {
+            var post_id = $(this).attr('id').split('-')[1];
+            var code = $("#code-" + post_id).html();
+            $("#widget-source-code").html(code);
+        });
+
         function getLinkForCategory(id, widgetData, category) {
 
             appURL = "http://business.linkmysport.in";
@@ -133,7 +142,7 @@
             var buttonColors = "background-color: " + backColor +
                                "; color: " + textColor + ";";
 
-            return "<style>#omnify-booking-widget{ " + buttonColors + "width : auto; height : auto ;border-radius : 25px; border: 1px solid #ddd; padding: 12px 25px 12px 25px; font-family : sans-serif ; font-weight: normal;font-size: 100%; }</style><script type='text/javascript'>function newPopup(url){popupWindow=window.open(url,'','left=10,top=100,resizable=yes,scrollbars=yes,menubar=no,location=no,,toolbar=no,directories=no,status=yes')}</script><h4><button id='omnify-booking-widget' onclick=\"JavaScript:newPopup(\'" + CTA_URL  + " \');\"" + "> " + buttonText + "</button></h4>";
+            return "<style>#omnify-booking-widget-<post_id>{ " + buttonColors + "width : auto; height : auto ;border-radius : 25px; border: 1px solid #ddd; padding: 12px 25px 12px 25px; font-family : sans-serif ; font-weight: normal;font-size: 100%; }</style><script type='text/javascript'>function newPopup(url){popupWindow=window.open(url,'','left=10,top=100,resizable=yes,scrollbars=yes,menubar=no,location=no,,toolbar=no,directories=no,status=yes')}</script><h4><button id='omnify-booking-widget-<post_id>' onclick=\"JavaScript:newPopup(\'" + CTA_URL  + " \');\"" + "> " + buttonText + "</button></h4>";
 
         }
 
@@ -175,6 +184,9 @@
                     
         });
 
+         /**
+         * Generate button code button
+         */
         $("#generate-button-btn").on('click', function() {
             var buttonColor = $("input[name='button_color']").val();
             var textColor = $("input[name='text_color']").val();
@@ -211,6 +223,39 @@
                 }
             });
         });
+
+        /**
+         * Delete shortcode AJAX
+         */
+        $(".delete-widget-btn").on('click', function() {
+            var post_id = $(this).attr('id').split('-')[1];
+            alert("Deleting Omnify Widget: " + post_id);
+
+            // ask if user is sure...
+
+            var data = {
+                'action' : 'delete_shortcode',
+                'post_id' : post_id
+            };
+
+            console.log(data);
+
+            $.ajax({
+                url: ajax_object.ajax_url,
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                    if(response == "success") {
+                        location.reload();
+                    } else {
+                        alert("Deleting failed!");
+                    }
+                }
+            });
+
+        });
+ 
 
     });
 

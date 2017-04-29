@@ -147,6 +147,7 @@ class Omnify_Widget {
 
         $this->loader->add_action( 'wp_ajax_gen_iframe', $plugin_admin, 'omnify_widget_ah_gen_iframe' );
         $this->loader->add_action( 'wp_ajax_gen_button', $plugin_admin, 'omnify_widget_ah_gen_button' );
+        $this->loader->add_action( 'wp_ajax_delete_shortcode', $plugin_admin, 'omnify_widget_ah_del_sc' );
 
         // Add shortcodes
         $this->loader->add_action( 'init', $plugin_admin, 'omnify_widget_register_shortcodes' );

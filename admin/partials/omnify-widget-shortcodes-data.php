@@ -34,7 +34,7 @@ while($loop->have_posts()) {
 ?>
           <tr>
             <td><b>1</b></td>
-            <td><?php echo $post->post_excerpt; ?></td>
+            <td><?php echo ucfirst($post->post_excerpt); ?></td>
             <td><?php echo $post->post_title; ?></td>
             <td>
               <div class="row">
@@ -50,8 +50,9 @@ while($loop->have_posts()) {
                 </div>
               </div>
             <td>
-              <button class="btn btn-warning">View Code</button>
-              <button class="btn btn-danger">Delete</button>
+              <textarea class="widget-code" id="<?php echo "code-" . $post->ID; ?>"><?php echo htmlentities($post->post_content); ?></textarea>
+              <button class="btn btn-warning view-code-btn" id="<?php echo "view-" . $post->ID; ?>" data-toggle="modal" data-target=".view-code-modal">View Code</button>
+              <button class="btn btn-danger delete-widget-btn" id="<?php echo "delete-" . $post->ID ?>">Delete</button>
             </td>
           </tr>
 <?php

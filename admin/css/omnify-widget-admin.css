@@ -69,6 +69,10 @@
     font-weight: bold;
 }
 
+.widget-code {
+    display: none;
+}
+
 
 /* --- Material Switch --- */
 .material-switch > input[type="checkbox"] {

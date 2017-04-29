@@ -195,14 +195,17 @@
 
 
 <!-- View Code Modal -->
-<div class="modal fade" id="CodeModal" role="dialog">
+<div class="modal fade view-code-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2>Widget Code</h2>
       </div>
-      <div class="modal-body code-modal-body" style="overflow: scroll;">
-        <p>NO CODE ASSOSIATED.</p>
+      <div class="modal-body">
+        <div class="form-group">
+        <textarea class="form-control" rows="9" id="widget-source-code"></textarea>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
