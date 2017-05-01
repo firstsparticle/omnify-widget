@@ -39,12 +39,26 @@
 		});
 
         /**
-         * Copy shortcode to clipboard
+         * Copy shortcode click event
          */
-        $(".copy-shortcode").click(function(e) {
-            var shortcode = $(this).parent().find(".shortcode").val();
-            alert(shortcode);
+        var clipboard = new Clipboard('.copy-shortcode-btn');
+        clipboard.on('success', event => {
+            if (event.text) {
+                showTooltip(event.trigger, 'copied!');
+            }
         });
+
+        /**
+         * Show the tooltip 'Copied!'
+         */
+		function showTooltip(elem, msg) {
+			var classNames = elem.className;
+			elem.setAttribute('class', classNames + ' hint--top');
+			elem.setAttribute('aria-label', msg);
+			setTimeout(function () {
+				elem.setAttribute('class', classNames);
+			}, 2000);
+		}
 
         /**
          * Fetching business data
@@ -65,6 +79,11 @@
                     console.log(JSON.stringify(resp));
                     business_id = widgetData.business_id[0].business_id;
                     setPreviewInModal();
+                    refreshButtonWidgetData();
+                },
+                error: function(error) {
+                    alert("Unable to connect to " + appURL + ". Please try again later!");
+                    return false;
                 }
             });
         }
@@ -72,12 +91,15 @@
         /**
          * Category changing reflects button name
          */
-        $("select[name='category']").on('change', function() {
+        $("select[name='category']").on('change', refreshButtonWidgetData);
+        function refreshButtonWidgetData() {
             var category = $(this).val();
             $("select[name='select-service']").html("");
 
+            alert();
             if(widgetData && category != 'website' && category != 'signup' && category != 'login') {
-
+                
+                $(".select-service-row").show();
                 for(var i = 0; i < widgetData[category].length; i++) {
                     var name = widgetData[category][i].name;
                     var id = widgetData[category][i].id;
@@ -86,8 +108,10 @@
                             "<option value='" + id + "'>" + name + "</option>"
                             );
                 }
-            } 
-        });
+            } else if(widgetData) {
+                $(".select-service-row").hide();
+            }
+        }
 
         /*
          * View Widget Source
@@ -175,6 +199,12 @@
         $("#generate-iframe-btn").on('click', function() {
             var height = $("#iframe-height").val();
             var width = $("#iframe-width").val();
+            
+            if(!height || !width) {
+                alert("Please provide all the details properly");
+                return false;
+            }
+
             var iframe_data = generateIframeWidget(height, width, iframeURL);
             var data = {
                 'action' : 'gen_iframe',
@@ -183,6 +213,7 @@
 
             if(!iframe_data) {
                 alert("Something went wrong! Please provide all the details properly.");
+                return false;
             }
 
             console.log(data);
@@ -216,6 +247,7 @@
 
             if(!buttonColor && !buttonText && !category && !serviceId && !cta_url) {
                 alert("Something went wrong! Please provide all the details properly.");
+                return false;
             }
 
             var data = {
@@ -252,7 +284,12 @@
          */
         $(".delete-widget-btn").on('click', function() {
             var post_id = $(this).attr('id').split('-')[1];
-            alert("Deleting Omnify Widget: " + post_id);
+
+            var isDelete = confirm("Are you sure you want to delete widget " + post_id + " ?");
+
+            if(!isDelete) {
+                return false;
+            }
 
             // ask if user is sure...
 

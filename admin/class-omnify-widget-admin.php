@@ -78,6 +78,8 @@ class Omnify_Widget_Admin {
             
             wp_enqueue_style( $this->plugin_name . '-bootstrap-select', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-bootstrap-select.css', array(), $this->version, 'all' );
             
+			wp_enqueue_style( $this->plugin_name . '-hint', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-hint.css', array(), $this->version, 'all' );
+            
             wp_enqueue_style( $this->plugin_name . '-css', plugin_dir_url( __FILE__ ) . 'css/omnify-widget-admin.css', array(), $this->version, 'all' );
         
         }
@@ -109,6 +111,8 @@ class Omnify_Widget_Admin {
             wp_enqueue_script( $this->plugin_name . '-js', plugins_url( 'js/omnify-widget-admin.js', __FILE__ ), array( 'jquery', 'iris' ), $this->version, false );
             
             wp_enqueue_script( $this->plugin_name . '-bootstrap', plugins_url('js/omnify-widget-bootstrap.js', __FILE__ ), array( 'jquery' ), $this->version, false );
+            
+            wp_enqueue_script( $this->plugin_name . '-clipboard', plugins_url('js/omnify-widget-clipboard.js', __FILE__ ), array( 'jquery' ), $this->version, false );
             
             wp_enqueue_script( $this->plugin_name . '-bootstrap-select', plugins_url('js/omnify-widget-bootstrap-select.js', __FILE__ ), array( $this->plugin_name . '-bootstrap' ), $this->version, false );
 

@@ -1,10 +1,9 @@
 <br/>
 <br/>
 <br/>
-<hr/>
 
 <div class="container" style="width:70%;">
-  <h2>Your Widgets</h2>
+  <h2>View Your Widgets</h2>
   <hr>
   <p>Press 'Copy' button to copy the identifier of the particular widget. Paste the identifier wherever you want in the Wordpress page you created. The button/iframe will show once the page is published.</p>
   <div class="panel panel-default">
@@ -41,9 +40,9 @@ while($loop->have_posts()) {
               <div class="row">
                 <div class="col-lg-12">
                   <div class="input-group">
-                    <input type="text" class="form-control shortcode" value="<?php echo htmlentities(get_post_meta($post->ID, 'shortcode', true)); ?>" disabled />
+                    <input type="text" class="form-control shortcode" id="shortcode-<?php echo $post->ID; ?>" value="<?php echo htmlentities(get_post_meta($post->ID, 'shortcode', true)); ?>" readonly />
                     <div class="input-group-btn copy-shortcode">
-                      <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary copy-shortcode-btn" data-clipboard-target="#shortcode-<?php echo $post->ID; ?>">
                         Copy
                       </button>
                     </div>

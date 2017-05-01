@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: Vijay Kumar
-Donate link: https://www.getomnify.com/about-us/
+Donate link: https://www.getomnify.com/
 Tags: omnify, linkmysport, getomnify, ecommerce, scheduling, software, fitness, wellness
 Requires at least: 3.0.1
 Tested up to: 3.4
@@ -12,34 +12,13 @@ Easily embed Omnify buttons and iframes onto your existing WordPress website and
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This plugin helps Omnify users to easily embed Omnify buttons and iframes onto your existing WordPress website. This plugin allows users to connect with the Omnify and further, fetch the data related to your business to help you generate event specific CTAs (buttons) and iframes.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
-
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+The plugin generates easy-to-embed shortcodes which can be copy pasted across the site, which will be recognized by WordPress and will be replaced with the appropriate button or iframe code.
 
 == Installation ==
 
-1. Download your plugin using the 'Download' button.
+1. Download your plugin from WordPress directory or from the .
 
 2. Copy it into your wordpress folder under ["public_html/wordpress/wp-content/plugins/"]. 
 

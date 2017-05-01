@@ -12,7 +12,7 @@
 ?>
 
 <div style="text-align: center; margin-top: 10%">
-<img src='<?php echo plugin_dir_url( __FILE__ ); ?>/images/omnifylogo.png' style="width:350px" class="img-rounded" alt="Omnify Inc">
+<img src='<?php echo plugin_dir_url( __FILE__ ); ?>/images/omnifylogo.png' style="width:320px" class="img-rounded" alt="Omnify Inc">
   <div style="margin-top: 70px">
     <h1><strong>Start selling from your existing website</strong></h1>
     <h4>Easily embed Omnify buttons and iframes onto your WordPress site</h4>
@@ -54,7 +54,7 @@
           </div>
         </div>
         </br>
-        <div class="row selectnamerow">
+        <div class="row select-service-row">
           <div class="col-sm-4 button-widget-labels">
             <p>Select Service</p>
           </div>
@@ -175,9 +175,9 @@
 					<li class="list-group-item">
 					  <div class="row">
 						<label for="iframe-height" class="number-labels">Height: </label>
-						<input type="number" class="number-inputs" id="iframe-height" placeholder="px." />
+						<input type="number" class="number-inputs" value="500" id="iframe-height" placeholder="px." />
 						<label for="iframe-width" class="number-labels">Width: </label>
-						<input type="number" class="number-inputs" id="iframe-width" placeholder="px." />
+						<input type="number" class="number-inputs" value="580" id="iframe-width" placeholder="px." />
 					  </div>
                     </li>
                 </ul>
