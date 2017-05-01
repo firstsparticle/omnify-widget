@@ -15,8 +15,8 @@
  * Plugin URI:        https://www.getomnify.com/plugins/wordpress
  * Description:       Easily embed Omnify buttons and iframes onto your existing WordPress website and start selling right from there.
  * Version:           1.0.0
- * Author:            Omnify Team
- * Author URI:        https://www.getomnify.com/about-us/
+ * Author:            Vijay Kumar
+ * Author URI:        http://nvijaykumar.me
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       omnify-widget
