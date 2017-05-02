@@ -48,10 +48,10 @@ None. We only fetch data about your classes, classpacks, facilities, events and 
 == Screenshots ==
 
 1. Setting up Omnify Widget
-[[https://github.com/getomnify/wp-widget/blob/master/assets/setup-token.png|alt=Setup Token]]
+![Setup Token](https://github.com/getomnify/wp-widget/blob/master/assets/setup-token.png)
 
 2. Home page, once the setup is done
-[[https://github.com/getomnify/wp-widget/blob/master/assets/home.png|alt=Home]]
+![Home](https://github.com/getomnify/wp-widget/blob/master/assets/home.png)
 
 3. Your widgets will look like this
-[[https://github.com/getomnify/wp-widget/blob/master/assets/widgets.png|alt=Home]]
+![Widgets](https://github.com/getomnify/wp-widget/blob/master/assets/widgets.png)
