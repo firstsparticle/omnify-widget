@@ -26,7 +26,7 @@
 
   <input type="text" class="form-control textbox-token" name="token" placeholder="Your token here..." />
   <br/>
-  <input type="submit" data-loading="Submitting..." class="btn btn-primary btn-lg" value="Submit Access Token">
+  <input type="submit" data-loading="Submitting..." class="btn btn-primary btn-lg setup-token-btn" value="Submit Access Token">
   </form>
 </div>
 

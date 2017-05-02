@@ -13,7 +13,7 @@
     /**
      * Global variables
      */
-    var appURL = "http://business.linkmysport.in";
+    var appURL = "http://business.getomnify.in";
     var websiteURL;
     var nonsessionMethod = "getOmnifyWidgetData";
     var iframeURL;
@@ -74,6 +74,15 @@
                 url: apiEndPoint,
                 type: 'GET',
                 success: function(resp) {
+
+                    if(!resp.success && resp.success == 0 ) {
+                        var toReset = confirm(resp.message + " " + "Do you want to reset the token?");
+                        if(toReset) {
+                            resetAuthToken();
+                        }
+                        return false;
+                    }
+
                     widgetData = resp;
                     websiteURL = resp.base_protocol + "://" + resp.subdomain + '.' + resp.domain;
                     console.log(JSON.stringify(resp));
@@ -93,7 +102,7 @@
          */
         $("select[name='category']").on('change', refreshButtonWidgetData);
         function refreshButtonWidgetData() {
-            var category = $(this).val();
+            var category = $("select[name='category']").val();
             $("select[name='select-service']").html("");
 
             if(widgetData && category != 'website' && category != 'signup' && category != 'login') {
@@ -284,6 +293,39 @@
         });
 
         /**
+         * Reset Auth Token
+         */
+        $(".reset-auth-token").on('click', function() {
+            var toReset = confirm("Are you sure you want to reset your token?");
+
+            if(toReset) {
+                resetAuthToken();
+            }
+
+        });
+
+        function resetAuthToken() {
+
+            var data = {
+                'action' : 'reset_token',
+            };
+
+            $.ajax({
+                url: ajax_object.ajax_url,
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                    if(response == "success") {
+                        location.reload();
+                    } else {
+                        alert("Reset failed!");
+                    }
+                }
+            });
+        }
+
+        /**
          * Delete shortcode AJAX
          */
         $(".delete-widget-btn").on('click', function() {
@@ -294,8 +336,6 @@
             if(!isDelete) {
                 return false;
             }
-
-            // ask if user is sure...
 
             var data = {
                 'action' : 'delete_shortcode',

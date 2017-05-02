@@ -245,6 +245,21 @@ class Omnify_Widget_Admin {
         wp_die();
     }
 
+     /**
+     *
+     * Handle AJAX requests for reset auth token
+     *
+     * @since   1.0.0
+     **/
+    public function omnify_widget_ah_reset_token() {
+        ob_clean();
+        if(delete_option('token')) {
+            echo "success";
+        }
+        wp_die();
+    }
+
+
     /**
      *
      * Register shortcodes for all the widgets

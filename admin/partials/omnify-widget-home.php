@@ -20,6 +20,7 @@
   <br/>
   <button class="btn btn-primary btn" data-toggle="modal" data-target=".widget-button-modal">Create a Button Widget</button>
   <button class="btn btn-success btn" data-toggle="modal" data-target=".widget-iframe-modal">Create an iFrame Widget</button>
+  <button class="btn btn-danger btn reset-auth-token" data-toggle="modal">Reset Auth Token</button>
   <br>
 </div>
 <br/>
