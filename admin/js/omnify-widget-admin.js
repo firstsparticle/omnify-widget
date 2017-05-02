@@ -132,11 +132,6 @@
 
         function getLinkForCategory(id, widgetData, category) {
 
-            if(!id || !widgetData || !category) {
-                alert("Something went wrong. Please try again later!");
-                return false;
-            }
-
             if(category != 'website' && category != 'signup' && category != 'login') {
 
                 var link = widgetData['links'][category] + "/" + id ;
@@ -251,10 +246,15 @@
          */
         $("#generate-button-btn").on('click', function() {
             var buttonColor = $("input[name='button_color']").val();
-            var textColor = $("input[name='text_color']").val();
-            var serviceId = $("select[name='select-service']").val();
             var buttonText = $("#button_name").val();
+            var textColor = $("input[name='text_color']").val();
             var category = $("select[name='category']").val()
+
+            var serviceId = $("select[name='select-service']").val();
+            if(category == 'website' || category == 'signup' || category == 'login') {
+                serviceId = 'N/A';
+            }
+
             var cta_url = getLinkForCategory(serviceId, widgetData, category);
             var action = category;
 
