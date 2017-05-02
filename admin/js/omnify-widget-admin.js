@@ -96,7 +96,6 @@
             var category = $(this).val();
             $("select[name='select-service']").html("");
 
-            alert();
             if(widgetData && category != 'website' && category != 'signup' && category != 'login') {
                 
                 $(".select-service-row").show();
@@ -123,6 +122,11 @@
         });
 
         function getLinkForCategory(id, widgetData, category) {
+
+            if(!id || !widgetData || !category) {
+                alert("Something went wrong. Please try again later!");
+                return false;
+            }
 
             if(category != 'website' && category != 'signup' && category != 'login') {
 
@@ -212,7 +216,7 @@
             };
 
             if(!iframe_data) {
-                alert("Something went wrong! Please provide all the details properly.");
+                alert("Please provide all the details properly.");
                 return false;
             }
 
@@ -245,8 +249,8 @@
             var cta_url = getLinkForCategory(serviceId, widgetData, category);
             var action = category;
 
-            if(!buttonColor && !buttonText && !category && !serviceId && !cta_url) {
-                alert("Something went wrong! Please provide all the details properly.");
+            if(!buttonColor || !buttonText || !category || !serviceId || !cta_url) {
+                alert("Please provide all the details properly.");
                 return false;
             }
 

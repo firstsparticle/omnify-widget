@@ -275,7 +275,12 @@ class Omnify_Widget_Admin {
      * @since   1.0.0
      **/
     private function omnify_widget_create_widget( $widget_type, $code, $action = 'IFRAME' ) {
-        
+
+        if( !isset($widget_type) && !isset($code) && !isset($action) ) {
+            echo "Invalid post data";
+            wp_die();
+        }
+
         $post = array(
             'post_title'        => $widget_type,
             'post_content'      => $code,
