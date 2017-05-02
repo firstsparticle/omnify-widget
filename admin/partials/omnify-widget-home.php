@@ -79,7 +79,7 @@
             <p>Text Color</p>
           </div>
           <div class="col-sm-8">
-            <input name="text_color"  class='input-color color-picker' />
+            <input name="text_color"  class='input-color color-picker' value="#FFFFFF" />
           </div>
           </div>
           <div class="row">
@@ -87,7 +87,7 @@
               <p>Button Color</p>
             </div>
             <div class="col-sm-8">
-              <input name="button_color" class='color-picker' />
+              <input name="button_color" class='color-picker' value="#00A6A6" />
             </div>
           </div>
       </div>
@@ -194,7 +194,6 @@
   </div>
 </div>
 
-
 <!-- View Code Modal -->
 <div class="modal fade view-code-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -205,7 +204,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-        <textarea class="form-control" rows="9" id="widget-source-code"></textarea>
+        <textarea class="form-control" rows="9" id="widget-source-code" readonly></textarea>
         </div>
       </div>
       <div class="modal-footer">

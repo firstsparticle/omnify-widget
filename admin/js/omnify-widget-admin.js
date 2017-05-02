@@ -13,7 +13,7 @@
     /**
      * Global variables
      */
-    var appURL = "http://business.getomnify.in";
+    var appURL = "http://app.getomnify.com";
     var websiteURL;
     var nonsessionMethod = "getOmnifyWidgetData";
     var iframeURL;
@@ -26,7 +26,10 @@
         /**
          * Iris color picker
          */
-		$('.color-picker').iris();    
+		$('.color-picker').iris({
+            hide: false,
+            palettes: true,
+        });    
 		$(document).click(function (e) {
 			if (!$(e.target).is(".color-picker, .iris-picker, .iris-picker-inner")) {
 				$('.color-picker').iris('hide');
@@ -61,6 +64,17 @@
 		}
 
         /**
+         * Get base URL for custom domains
+         */
+        function setWebsiteURL(resp) {
+            if(resp.whitelabel == 1 && resp.custom_domain != null) {
+                websiteURL = resp.base_protocol + "://" + resp.custom_domain;
+            } else {
+                websiteURL = resp.base_protocol + "://" + resp.subdomain + '.' + resp.domain;
+            }
+        }
+
+        /**
          * Fetching business data
          */
         if(typeof(token) !== 'undefined') {
@@ -84,7 +98,7 @@
                     }
 
                     widgetData = resp;
-                    websiteURL = resp.base_protocol + "://" + resp.subdomain + '.' + resp.domain;
+                    setWebsiteURL(resp);
                     console.log(JSON.stringify(resp));
                     business_id = widgetData.business_id[0].business_id;
                     setPreviewInModal();
@@ -98,9 +112,13 @@
         }
 
         /**
-         * Category changing reflects button name
+         * Category change event
          */
         $("select[name='category']").on('change', refreshButtonWidgetData);
+
+        /**
+         * Sets service data based on category
+         */
         function refreshButtonWidgetData() {
             var category = $("select[name='category']").val();
             $("select[name='select-service']").html("");
@@ -130,6 +148,9 @@
             $("#widget-source-code").html(code);
         });
 
+        /**
+         * Generate button link based on selected category
+         */
         function getLinkForCategory(id, widgetData, category) {
 
             if(category != 'website' && category != 'signup' && category != 'login') {
@@ -153,9 +174,11 @@
                             '?redirectback=' + websiteURL;
                 }
             }
-
         }
 
+        /**
+         * Display iframe preview inside modal
+         */
         function setPreviewInModal() {
             var showFooter = 1;
             var showHeader = $("input[type='checkbox'][name='show-header']")
@@ -185,8 +208,10 @@
             $(".iframe-view").attr('src', iframeURL);
         }
 
-        $(".iframe-check").on('change', setPreviewInModal);
 
+        /**
+         * Generate button widget HTML
+         */
         function generateButtonWidget(backColor, textColor, buttonText, CTA_URL ) {
 
             var buttonColors = "background-color: " + backColor +
@@ -196,13 +221,16 @@
 
         }
 
+        /**
+         * Generate iframe widget HTML
+         */
         function generateIframeWidget(height, width, url) {
             return '<iframe src=\"' + url + '\" style=\"height:' +
                     height + 'px; width:' + width + 'px;\"></iframe>';
         }
 
         /**
-         * Generate iframe code button
+         * Generate iframe - Click event
          */
         $("#generate-iframe-btn").on('click', function() {
             var height = $("#iframe-height").val();
@@ -241,8 +269,8 @@
                     
         });
 
-         /**
-         * Generate button code button
+        /**
+         * Generate button widget - Click event
          */
         $("#generate-button-btn").on('click', function() {
             var buttonColor = $("input[name='button_color']").val();
@@ -293,6 +321,11 @@
         });
 
         /**
+         * Change iframe options - Change Event
+         */
+        $(".iframe-check").on('change', setPreviewInModal);
+
+        /**
          * Reset Auth Token
          */
         $(".reset-auth-token").on('click', function() {
@@ -304,6 +337,9 @@
 
         });
 
+        /**
+         * Reset auth token function
+         */
         function resetAuthToken() {
 
             var data = {
@@ -357,10 +393,7 @@
                     }
                 }
             });
-
         });
- 
-
     });
 
 })( jQuery );
