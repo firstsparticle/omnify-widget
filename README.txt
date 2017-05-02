@@ -47,8 +47,11 @@ None. We only fetch data about your classes, classpacks, facilities, events and 
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Setting up Omnify Widget
+[[https://github.com/getomnify/wp-widget/blob/master/assets/setup-token.png|alt=Setup Token]]
+
+2. Home page, once the setup is done
+[[https://github.com/getomnify/wp-widget/blob/master/assets/home.png|alt=Home]]
+
+3. Your widgets will look like this
+[[https://github.com/getomnify/wp-widget/blob/master/assets/widgets.png|alt=Home]]
