@@ -60,7 +60,7 @@
             <p>Select Service</p>
           </div>
           <div class="col-sm-8">
-            <select title="Select Category" name="select-service" data-width="100%">
+            <select title="Select Service" name="select-service" data-width="100%" class="selectpicker">
             </select>
           </div>
         </div>
@@ -70,7 +70,7 @@
             <p>Button Name</p>
           </div>
           <div class="col-sm-8">
-            <input type="text" id='button_name' name="name" placeholder="Your Button Name" class='form-control'/>
+            <input type="text" id='button_name' name="name" placeholder="Your Button Name" class='form-control' value="Visit Website" />
           </div>
         </div>
         <br/>
@@ -88,6 +88,14 @@
             </div>
             <div class="col-sm-8">
               <input name="button_color" class='color-picker' value="#00A6A6" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 button-widget-preview">
+              <img src="<?php echo plugin_dir_url( __FILE__ ); ?>/images/ajax-loader.gif" class="loader"/>
+              <div class="col-sm-12 button-widget-preview-content">
+              </div>
             </div>
           </div>
       </div>
@@ -120,56 +128,56 @@
 					<li class="list-group-item">
                         Header
                         <div class="material-switch pull-right">
-                            <input id="header" class="iframe-check" name="show-header" type="checkbox"/>
+                            <input id="header" class="iframe-check" name="show-header" type="checkbox" checked />
                             <label for="header" class="label-primary"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         Herosection
                         <div class="material-switch pull-right">
-                            <input id="herosection" class="iframe-check" name="show-herosection" type="checkbox"/>
+                            <input id="herosection" class="iframe-check" name="show-herosection" type="checkbox" checked/>
                             <label for="herosection" class="label-primary"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         Facilities
                         <div class="material-switch pull-right">
-                            <input id="facilities" class="iframe-check" name="show-facilities" type="checkbox"/>
+                            <input id="facilities" class="iframe-check" name="show-facilities" type="checkbox" checked/>
                             <label for="facilities" class="label-primary"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         Classes
                         <div class="material-switch pull-right">
-                            <input id="classes" name="show-classes" class="iframe-check" type="checkbox"/>
+                            <input id="classes" name="show-classes" class="iframe-check" type="checkbox" checked />
                             <label for="classes" class="label-primary"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         Classpacks
                         <div class="material-switch pull-right">
-                            <input id="classpacks" name="show-classpacks" class="iframe-check" type="checkbox"/>
+                            <input id="classpacks" name="show-classpacks" class="iframe-check" type="checkbox" checked />
                             <label for="classpacks" class="label-primary"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         Events
                         <div class="material-switch pull-right">
-                            <input id="events" name="show-events" class="iframe-check" type="checkbox"/>
+                            <input id="events" name="show-events" class="iframe-check" type="checkbox" checked />
                             <label for="events" class="label-primary"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         Memberships
                         <div class="material-switch pull-right">
-                            <input id="memberships" name="show-memberships" class="iframe-check" type="checkbox"/>
+                            <input id="memberships" name="show-memberships" class="iframe-check" type="checkbox" checked />
                             <label for="memberships" class="label-primary"></label>
                         </div>
                     </li>
 					<li class="list-group-item">
                         Appointments
                         <div class="material-switch pull-right">
-                            <input id="appointments" name="show-appointments" class="iframe-check" type="checkbox"/>
+                            <input id="appointments" name="show-appointments" class="iframe-check" type="checkbox" checked />
                             <label for="appointments" class="label-primary"></label>
                         </div>
                     </li>
@@ -222,3 +230,5 @@ if($token) {
 }
 
 ?>
+
+<div class="modal-loader"><!-- bottom of page --></div>

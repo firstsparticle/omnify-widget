@@ -3,6 +3,32 @@
  * included in this file.
  */
 
+.modal-loader {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../partials/images/ajax-loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+body.loading {
+    overflow: hidden;   
+}
+
+/** 
+ * Anytime the body has the loading class,
+ * our modal element will be visible
+ */
+body.loading .modal-loader {
+    display: block;
+}            
+
 .textbox-token {
     font-size : 24pt;
     width : 60%;
@@ -73,6 +99,18 @@
     display: none;
 }
 
+.button-widget-preview {
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 90px;
+    text-align: center;
+    border: solid #c1c1c1;
+}
+
+.loader {
+    margin: auto;
+    width: 30px;
+}
 
 /* --- Material Switch --- */
 .material-switch > input[type="checkbox"] {
