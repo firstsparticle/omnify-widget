@@ -44,4 +44,4 @@ None. We only fetch data about your classes, classpacks, facilities, events and 
 == Screenshots ==
 1. Setting up Omnify Widget
 2. Home page, once the setup is done
-3. Your widgets will look like
+3. Your widgets will look like this

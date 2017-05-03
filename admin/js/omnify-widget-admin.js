@@ -172,7 +172,7 @@
                 data: data,
                 success: function(response) {
                     console.log( "Widget id: " + response);
-                    location.reload();
+                    pageReload();
                 },
                 error: function(error) {
                     console.log(error);
@@ -227,7 +227,7 @@
                         .val('')
                         .removeAttr('checked')
                         .removeAttr('selected');
-                    location.reload();
+                    pageReload();
                 },
                 error: function(error) {
                     console.log(error);
@@ -261,7 +261,9 @@
                 success: function(response) {
                     console.log(response);
                     if(response == "success") {
-                        location.reload();
+                        pageReload();
+                        autoFillButtonForm();
+                        pageReload();
                     } else {
                         alert("Deleting failed!");
                     }
@@ -489,6 +491,24 @@
         }
 
         /**
+         * Autofills the button form
+         */
+        function autoFillButtonForm() {
+            $("select[name='category']").val('website');
+            $("#button_name").val('Visit Website');
+            $("input[name='text_color']").val('#ffffff');
+            $("input[name='button_color']").val('#00a6a6');
+        }
+
+        /**
+         * Page refresh
+         */
+        function pageReload() {
+            autoFillButtonForm();
+            location.reload();
+        }
+
+        /**
          * Reset auth token function (AJAX)
          */
         function resetAuthToken() {
@@ -504,7 +524,7 @@
                 success: function(response) {
                     console.log(response);
                     if(response == "success") {
-                        location.reload();
+                        pageReload();
                     } else {
                         alert("Reset failed!");
                     }

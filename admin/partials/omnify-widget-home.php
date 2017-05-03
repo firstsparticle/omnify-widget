@@ -188,7 +188,7 @@
 						<label for="iframe-height" class="number-labels">Height: </label>
 						<input type="number" class="number-inputs" value="500" id="iframe-height" placeholder="px." />
 						<label for="iframe-width" class="number-labels">Width: </label>
-						<input type="number" class="number-inputs" value="50" id="iframe-width" placeholder="%" />
+						<input type="number" class="number-inputs" value="100" id="iframe-width" placeholder="%" />
 					  </div>
                     </li>
                 </ul>
