@@ -13,12 +13,9 @@
     /**
      * Global variables
      */
-    var appURL = "http://business.getomnify.in";
-    var websiteURL;
+    var websiteURL, iframeURL, widgetData, business_id;
     var nonsessionMethod = "getOmnifyWidgetData";
-    var iframeURL;
-    var widgetData;
-    var business_id;
+    var appURL = "http://business.getomnify.in";
     var customerURL = "https://customer.getomnify.com";
 
     /**
@@ -36,6 +33,22 @@
     $(document).ready(function() {
 
         /**
+         * All of the initializations should reside below this comment.
+         *
+         * Note: It is recommended that, any block of code containing
+         * AJAX calls should be at the bottom of all the initializations.
+         */
+
+        /**
+         * Initialize plugin
+         */
+        if(typeof(token) !== 'undefined') {
+            plugin_init();
+        } else {
+            setTimeout(plugin_init, 1000);
+        }
+
+        /**
          * Iris color picker
          */
 		$('.color-picker').iris({
@@ -43,18 +56,6 @@
             palettes: true,
             change: setButtonPreviewInModal
         });
-        // hide color picker on clicking anywhere else
-		$(document).click(function (e) {
-			if (!$(e.target).is(".color-picker, .iris-picker, .iris-picker-inner")) {
-				$('.color-picker').iris('hide');
-			}
-		});
-        // show color picker on clicking input box
-		$('.color-picker').click(function (event) {
-			$('.color-picker').iris('hide');
-			$(this).iris('show');
-            return false;
-		});
 
         /**
          * Integrating clipboard plugin
@@ -66,21 +67,31 @@
             }
         });
 
+
         /**
          * All of the browser events handler should reside below.
          *
-         * Note: It recommended that, the event handlers which
+         * Note: It is recommended that, the event handlers which
          * perform AJAX calls should be placed at the bottom.
          */
 
         /**
-         * Initialize plugin
+         * Hide color picker - Click Event
          */
-        if(typeof(token) !== 'undefined') {
-            plugin_init();
-        } else {
-            setTimeout(plugin_init, 1000);
-        }
+		$(document).click(function (e) {
+			if (!$(e.target).is(".color-picker, .iris-picker, .iris-picker-inner")) {
+				$('.color-picker').iris('hide');
+			}
+		});
+
+        /**
+         * Show color picker - Click Event
+         */
+		$('.color-picker').click(function (event) {
+			$('.color-picker').iris('hide');
+			$(this).iris('show');
+            return false;
+		});
 
         /**
          * Category - Change event
@@ -115,7 +126,23 @@
         });
 
         /**
-         * Generate iframe - Click event
+         * Change iframe options - Change Event
+         */
+        $(".iframe-check").on('change', setIframePreviewInModal);
+
+        /**
+         * Reset Auth Token - Click Event
+         */
+        $(".reset-auth-token").on('click', function() {
+            var toReset = confirm("Are you sure you want to reset your token?");
+
+            if(toReset) {
+                resetAuthToken();
+            }
+        });
+
+        /**
+         * Generate iframe - Click Event (AJAX)
          */
         $("#generate-iframe-btn").on('click', function() {
             var height = $("#iframe-height").val();
@@ -155,21 +182,24 @@
         });
 
         /**
-         * Generate button widget - Click event
+         * Generate button widget - Click event (AJAX)
          */
         $("#generate-button-btn").on('click', function() {
             var buttonColor = $("input[name='button_color']").val();
             var buttonText = $("#button_name").val();
             var textColor = $("input[name='text_color']").val();
             var category = getCategory();
+            var action;
 
             var serviceId = $("select[name='select-service']").val();
             if(category == 'website' || category == 'signup' || category == 'login') {
                 serviceId = 'N/A';
+                action = category;
+            } else {
+                action = $("select[name='select-service'] option:selected").text();
             }
 
             var cta_url = getLinkForCategory(serviceId, widgetData, category);
-            var action = category;
 
             if(!buttonColor || !buttonText || !category || !serviceId || !cta_url) {
                 alert("Please provide all the details");
@@ -203,23 +233,6 @@
                     console.log(error);
                 }
             });
-        });
-
-        /**
-         * Change iframe options - Change Event
-         */
-        $(".iframe-check").on('change', setIframePreviewInModal);
-
-        /**
-         * Reset Auth Token
-         */
-        $(".reset-auth-token").on('click', function() {
-            var toReset = confirm("Are you sure you want to reset your token?");
-
-            if(toReset) {
-                resetAuthToken();
-            }
-
         });
 
         /**
@@ -258,9 +271,9 @@
 
 
         /**
-         * All of the functions should reside below, in this file.
+         * All of the functions should reside below this comment.
          *
-         * Note: It recommended that, the functions which perform
+         * Note: It is recommended that, the functions which perform
          * AJAX calls should be at the bottom of all the functions.
          */
 
@@ -324,12 +337,19 @@
         }
 
         /**
+         * Refresh bootstrap-select to update
+         */
+        function refreshSelectPicker() {
+            $(".selectpicker").selectpicker('refresh');
+        }
+
+        /**
          * Sets service data based on category
          */
         function refreshButtonWidgetData() {
             var category = getCategory();
             $("select[name='select-service']").html("");
-            $("select[name='select-service']").selectpicker('refresh');
+            refreshSelectPicker();
 
             if(widgetData && category != 'website' && category != 'signup' && category != 'login') {
                 
@@ -341,7 +361,7 @@
                     $("select[name='select-service']").append(
                             "<option value='" + id + "'>" + name + "</option>"
                             );
-                    $("select[name='select-service']").selectpicker('refresh');
+                    refreshSelectPicker();
                 }
             } else if(widgetData) {
                 $(".select-service-row").hide();
@@ -465,7 +485,7 @@
          */
         function generateIframeWidget(height, width, url) {
             return '<iframe src=\"' + url + '\" style=\"height:' +
-                    height + 'px; width:' + width + 'px;\"></iframe>';
+                    height + 'px; width:' + width + '%;\"></iframe>';
         }
 
         /**

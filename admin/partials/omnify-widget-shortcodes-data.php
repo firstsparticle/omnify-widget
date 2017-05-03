@@ -34,7 +34,12 @@ while($loop->have_posts()) {
 ?>
           <tr>
             <td><b><?php echo $count; ?></b></td>
-            <td><?php echo ucfirst($post->post_excerpt); ?></td>
+            <td>
+                <?php
+                $in = ucfirst($post->post_excerpt);
+                echo strlen($in) > 20 ? substr($in,0,17)."..." : $in;
+                ?>
+            </td>
             <td><?php echo $post->post_title; ?></td>
             <td>
               <div class="row">

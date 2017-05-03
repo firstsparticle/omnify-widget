@@ -117,9 +117,11 @@
       </div>
 	  <div class="modal-body">
 	    <div class="row">
-	  	  <div class="col-sm-8">
-			<iframe class="iframe-view" src="" frameborder="0" allowfullscreen>
-			</iframe>
+          <div class="col-sm-8">
+            <div class="mac-wrapper">
+			  <iframe class="iframe-view" src="" frameborder="0" allowfullscreen>
+              </iframe>
+            </div>
 		  </div>
 		  <div class="col-sm-3 iframe-modal-actions">
             <div class="panel panel-default">
@@ -186,7 +188,7 @@
 						<label for="iframe-height" class="number-labels">Height: </label>
 						<input type="number" class="number-inputs" value="500" id="iframe-height" placeholder="px." />
 						<label for="iframe-width" class="number-labels">Width: </label>
-						<input type="number" class="number-inputs" value="580" id="iframe-width" placeholder="px." />
+						<input type="number" class="number-inputs" value="50" id="iframe-width" placeholder="%" />
 					  </div>
                     </li>
                 </ul>
