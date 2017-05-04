@@ -53,7 +53,6 @@
          */
 		$('.color-picker').iris({
             hide: false,
-            palettes: true,
             change: setButtonPreviewInModal
         });
 
@@ -589,7 +588,7 @@
                     widgetData = resp;
                     setWebsiteURL(resp);
                     console.log(JSON.stringify(resp));
-                    business_id = widgetData.business_id[0].business_id;
+                    business_id = widgetData.business_id;
 
                     // set all the previews
                     setIframePreviewInModal();
