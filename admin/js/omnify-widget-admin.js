@@ -15,7 +15,7 @@
      */
     var websiteURL, iframeURL, widgetData, business_id;
     var nonsessionMethod = "getOmnifyWidgetData";
-    var appURL = "http://app.getomnify.com";
+    var appURL = "https://app.getomnify.com";
     var customerURL = "https://customer.getomnify.com";
 
     /**
@@ -597,6 +597,7 @@
                 },
                 error: function(error) {
                     alert("Unable to connect to " + appURL + ". Please try again later!");
+                    console.log(error);
                     return false;
                 }
             });
