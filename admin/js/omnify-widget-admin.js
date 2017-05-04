@@ -186,8 +186,8 @@
          */
         $("#generate-button-btn").on('click', function() {
             var buttonColor = $("input[name='button_color']").val();
-            var buttonText = $("#button_name").val();
             var textColor = $("input[name='text_color']").val();
+            var buttonText = $("#button_name").val();
             var category = getCategory();
             var action;
 
@@ -209,7 +209,7 @@
             var data = {
                 'action' : 'gen_button',
                 'button': {
-                    'code' : generateButtonWidget( buttonColor, textColor, buttonText, cta_url ),
+                    'code' : generateBtnWidget( buttonColor, textColor, buttonText, cta_url ),
                     'action' : action,
                 }
             };
@@ -222,11 +222,13 @@
                 data: data,
                 success: function(response) {
                     console.log("Widget id: " + response);
+
                     $(':input')
                         .not(':button, :submit, :reset, :hidden, .shortcode')
                         .val('')
                         .removeAttr('checked')
                         .removeAttr('selected');
+
                     pageReload();
                 },
                 error: function(error) {
@@ -261,7 +263,6 @@
                 success: function(response) {
                     console.log(response);
                     if(response == "success") {
-                        pageReload();
                         autoFillButtonForm();
                         pageReload();
                     } else {
@@ -350,21 +351,27 @@
          */
         function refreshButtonWidgetData() {
             var category = getCategory();
+            
+            // remove all the options from 'Select Service' dropdown
             $("select[name='select-service']").html("");
-            refreshSelectPicker();
+
+            refreshSelectPicker();  // refresh the bootstrap-select UI
 
             if(widgetData && category != 'website' && category != 'signup' && category != 'login') {
                 
-                $(".select-service-row").show();
+                $(".select-service-row").show();    // show 'Select Service' field
+
                 for(var i = 0; i < widgetData[category].length; i++) {
                     var name = widgetData[category][i].name;
                     var id = widgetData[category][i].id;
                     
                     $("select[name='select-service']").append(
-                            "<option value='" + id + "'>" + name + "</option>"
-                            );
-                    refreshSelectPicker();
+                        "<option value='" + id + "'>" + name + "</option>"
+                    );
+
+                    refreshSelectPicker();  // refresh the bootstrap-select UI
                 }
+
             } else if(widgetData) {
                 $(".select-service-row").hide();
             }
@@ -403,12 +410,12 @@
          */
         function setButtonPreviewInModal() {
             
+            var serviceId = $("select[name='select-service']").val();
             var backColor = $("input[name='button_color']").val();
             var textColor = $("input[name='text_color']").val();
             var buttonText = $("#button_name").val();
             var category = getCategory();
 
-            var serviceId = $("select[name='select-service']").val();
             if(category == 'website' || category == 'signup' || category == 'login') {
                 serviceId = 'N/A';
             }
@@ -417,16 +424,20 @@
                 $(".button-widget-preview-content").html("<h3>Please select a service!</h3>");
                 return false;
             }
+
             var cta_url = getLinkForCategory(serviceId, widgetData, category);
 
             if(backColor && textColor && buttonText && cta_url) {
+                
                 $(".button-widget-preview-content").hide();
                 $(".loader").show();
+
                 setTimeout(function() {
                     $(".loader").hide();
                 }, 500);
+
                 setTimeout(function() {
-                    var buttonHTML = generateButtonWidget( backColor, textColor, buttonText, cta_url, "0" );
+                    var buttonHTML = generateBtnWidget( backColor, textColor, buttonText, cta_url, "0" );
                     $(".button-widget-preview-content").html(buttonHTML);
                     $(".button-widget-preview-content").show();
                 }, 500);
@@ -437,21 +448,30 @@
          * Display iframe preview in modal
          */
         function setIframePreviewInModal() {
+
             var showFooter = 1;
+
             var showHeader = $("input[type='checkbox'][name='show-header']")
                 .prop('checked') ? 1 :  0;
+            
             var showHerosection = $("input[type='checkbox'][name='show-herosection']")
                 .prop('checked') ? 1 :  0;
+           
             var showFacilities = $("input[type='checkbox'][name='show-facilities']")
                 .prop('checked') ? 1 :  0;
+           
             var showMemberships = $("input[type='checkbox'][name='show-memberships']")
                 .prop('checked') ? 1 :  0;
+           
             var showEvents = $("input[type='checkbox'][name='show-events']")
                 .prop('checked') ? 1 :  0;
+           
             var showClasses = $("input[type='checkbox'][name='show-classes']")
                 .prop('checked') ? 1 :  0;
+           
             var showClasspacks = $("input[type='checkbox'][name='show-classpacks']")
                 .prop('checked') ? 1 :  0;
+           
             var showAppointments = $("input[type='checkbox'][name='show-appointments']")
                 .prop('checked') ? 1 :  0;
 
@@ -469,7 +489,7 @@
         /**
          * Generate button widget HTML
          */
-        function generateButtonWidget( backColor, textColor, buttonText, CTA_URL, post_id ) {
+        function generateBtnWidget( backColor, textColor, buttonText, CTA_URL, post_id ) {
 
             if(!post_id) {
                 post_id = "<post_id>";
@@ -478,7 +498,17 @@
             var buttonColors = "background-color: " + backColor +
                                "; color: " + textColor + ";";
 
-            return "<style>#omnify-booking-widget-" + post_id + "{ " + buttonColors + "width : auto; height : auto ;border-radius : 25px; border: 1px solid #ddd; padding: 12px 25px 12px 25px; font-family : sans-serif ; font-weight: normal;font-size: 100%; }</style><script type='text/javascript'>function newPopup(url){popupWindow=window.open(url,'','left=10,top=100,resizable=yes,scrollbars=yes,menubar=no,location=no,,toolbar=no,directories=no,status=yes')}</script><h4><button id='omnify-booking-widget-" + post_id + "' onclick=\"JavaScript:newPopup(\'" + CTA_URL  + " \');\"" + "> " + buttonText + "</button></h4>";
+            return "<style>#omnify-booking-widget-" + post_id + "{ " + buttonColors + "width : auto;"
+                        + "height : auto ;border-radius : 25px; border: 1px solid #ddd;"
+                        + " padding: 12px 25px 12px 25px; font-family : sans-serif;"
+                        + " font-weight: normal;font-size: 100%; }</style><script"
+                        + " type='text/javascript'>function newPopup(url){popupWindow"
+                        + "=window.open(url,'','left=10,top=100,resizable=yes, "
+                        + "scrollbars=yes,menubar=no,location=no,,toolbar=no,"
+                        + "directories=no,status=yes')}</script><h4><button"
+                        + " id='omnify-booking-widget-" + post_id + "'"
+                        + " onclick=\"JavaScript:newPopup(\'" + CTA_URL  + " \');\""
+                        + "> " + buttonText + "</button></h4>";
 
         }
 
@@ -548,6 +578,7 @@
                 success: function(resp) {
 
                     if(!resp.success && resp.success == 0 ) {
+
                         var toReset = confirm(resp.message + " " + "Do you want to reset the token?");
                         if(toReset) {
                             resetAuthToken();
