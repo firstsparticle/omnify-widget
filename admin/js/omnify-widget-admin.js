@@ -15,7 +15,7 @@
      */
     var websiteURL, iframeURL, widgetData, business_id;
     var nonsessionMethod = "getOmnifyWidgetData";
-    var appURL = "http://business.getomnify.in";
+    var appURL = "http://app.getomnify.com";
     var customerURL = "https://customer.getomnify.com";
 
     /**
