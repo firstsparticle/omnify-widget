@@ -11,12 +11,31 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Easily embed Omnify buttons and iframes onto your existing WordPress website and start selling right from there.
 
 == Description ==
+Omnify is a small business software to manage your scheduling, automate your workflow and sell online.
+
 This plugin helps Omnify users to easily embed Omnify buttons and iframes onto your existing WordPress website. This plugin allows users to connect with the Omnify and further, fetch the data related to your business to help you generate event specific CTAs (buttons) and iframes.
 
-The plugin generates easy-to-embed shortcodes which can be copy pasted across the site, which will be recognized by WordPress and will be replaced with the appropriate button or iframe code.
+Whether you are fitness studio, a yoga trainer, a language school or an online coach, Omnify provides you with beautiful website templates to go online; powerful scheduling tools to manage your classes, appointments, events, rentals and more with real-time availability. Omnify also helps you automate your workflow with auto-invoices, custom emails, sales reports, CRM, discount coupons, customer profiles etc.
+
+More information:
+
+All features- https://www.getomnify.com/features
+Pricing https://www.getomnify.com/plans-pricing
+New product updates https://www.getomnify.com/new-features
+Knowledgebase [Omnify Knowledge Base](http://help.getomnify.com/)
+
+The Process:
+
+To use this widget, you need to create your account first by signing up at app.getomnify.com and install the plugin to get started. Need help?
+
+How to create an Omnify Account? 
+How to install Omnify’s Wordpress Plugin?
+How to create services and publish it in my Wordpress site?
+
+If you need any help in set-up or are looking for a demo, kindly drop us a line at hello@getomnify.com
 
 == Installation ==
-1. Download your plugin from WordPress directory or from the .
+1. Download your plugin from WordPress directory or from the Omnify website.
 
 2. Copy it into your wordpress folder under [\"public_html/wordpress/wp-content/plugins/\"]. 
 
