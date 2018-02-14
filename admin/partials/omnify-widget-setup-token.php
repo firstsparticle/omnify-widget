@@ -36,15 +36,18 @@
   </div>
   <ol>
     <li>
-      <a href="https://app.getomnify.com/login" target="_blank">Login</a> to Omnify or <a href="https://app.getomnify.com/signup" target="_blank">SignUp</a> if you're a new user.
+      <a href="https://app.getomnify.com/login?utm_source=wordpress&utm_medium=plugin" target="_blank">Login</a> to Omnify or <a href="https://app.getomnify.com/signup?utm_source=wordpress&utm_medium=plugin" target="_blank">SignUp</a> if you're a new user.
     </li>
     <li>
-      In the Omnify Dashboard, go to <b>Website</b> &gt; <b>Widgets</b> and click on <b>'Get Access Token'</b> button.
+      In the Omnify Dashboard, go to <b>Settings</b> &gt; <b>Integrations</b>.
     </li>
-    <img src="<?php echo plugin_dir_url( __FILE__ ); ?>/images/generate-token.png" class="image-padding" alt="Step 1"><br>
     <li>
-      Press 'Copy To Clipboard' in the resulting pop-up.
+      Click on <b>WordPress</b>
     </li>
-    <img src="<?php echo plugin_dir_url( __FILE__ ); ?>/images/copy-token.png" class="image-padding" alt="Step 2"><br>
+    <img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/generate-token.png" class="image-padding" alt="Step 1"><br>
+    <li>
+      Click on <b>Copy Token</b> in the resulting pop-up.
+    </li>
+    <img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/copy-token.png" class="image-padding" alt="Step 2"><br>
   </ol>
 </div>

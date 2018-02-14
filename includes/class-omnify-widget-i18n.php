@@ -24,24 +24,19 @@
  * @subpackage Omnify_Widget/includes
  * @author     Omnify Team <tech@getomnify.com>
  */
-class Omnify_Widget_i18n {
-
-
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    1.0.0
-	 */
-	public function load_plugin_textdomain() {
-
-		load_plugin_textdomain(
-			'omnify-widget',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
-
-	}
-
-
-
+class Omnify_Widget_i18n
+{
+    /**
+     * Load the plugin text domain for translation.
+     *
+     * @since    1.0.0
+     */
+    public function load_plugin_textdomain()
+    {
+        load_plugin_textdomain(
+            'omnify-widget',
+            false,
+            dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+        );
+    }
 }

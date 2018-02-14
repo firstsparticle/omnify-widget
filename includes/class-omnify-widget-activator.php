@@ -20,17 +20,16 @@
  * @subpackage Omnify_Widget/includes
  * @author     Omnify Team <tech@getomnify.com>
  */
-class Omnify_Widget_Activator {
-
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function activate() {
-
-	}
-
+class Omnify_Widget_Activator
+{
+    /**
+     * Short Description. (use period)
+     *
+     * Long Description.
+     *
+     * @since    1.0.0
+     */
+    public static function activate()
+    {
+    }
 }
