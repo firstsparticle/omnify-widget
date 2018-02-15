@@ -75,7 +75,7 @@ class Omnify_Widget
     public function __construct()
     {
         $this->plugin_name = 'omnify-widget';
-        $this->version = '2.0.0';
+        $this->version = '2.0.3';
         $this->api_url = 'https://app.getomnify.com';
 
         $this->load_dependencies();
