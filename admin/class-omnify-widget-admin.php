@@ -293,7 +293,7 @@ class Omnify_Widget_Admin
             $widgetKey = $widget['key'];
             $widgetId = $widget['id'];
             $query = new WP_Query("post_type=omnify_widget&meta_key=omnify_key&meta_value=$widgetKey&order=ASC");
-            if (empty($query->have_posts())) {
+            if ($query->have_posts() == false) {
                 $this->omnify_widget_create_widget('IFRAME', $widget['html_code'], 'IFRAME', $widget['name'], $widgetKey, $widgetId);
             } else {
                 $post = $query->posts[0];
